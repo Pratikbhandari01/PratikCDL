@@ -10,11 +10,18 @@ html {
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: var(--font-body, 'Manrope', system-ui, sans-serif);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #ffffff;
-  color: #343a40;
+  background:
+    radial-gradient(circle at top left, rgba(201, 168, 76, 0.12) 0, transparent 28%),
+    radial-gradient(circle at top right, rgba(59, 130, 246, 0.08) 0, transparent 24%),
+    linear-gradient(180deg, #f7f9fc 0%, #ffffff 34%, #f4f7fb 100%);
+  color: #16213e;
+}
+
+body, button, input, select, textarea {
+  font-family: inherit;
 }
 
 a {
@@ -23,34 +30,41 @@ a {
 }
 
 button {
-  font-family: inherit;
+  border: 0;
+  background: none;
 }
 
 img {
   max-width: 100%;
   height: auto;
+  display: block;
+}
+
+:focus-visible {
+  outline: 3px solid rgba(201, 168, 76, 0.45);
+  outline-offset: 3px;
 }
 
 /* ===== SCROLLBAR ===== */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #edf2f7;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #c9a84c;
-  border-radius: 4px;
+  background: linear-gradient(180deg, #c9a84c, #a8872e);
+  border-radius: 999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #a8872e;
+  background: linear-gradient(180deg, #d6b860, #8f7122);
 }
 
 /* ===== SELECTION ===== */
 ::selection {
-  background: rgba(201, 168, 76, 0.3);
-  color: #1a1a2e;
+  background: rgba(201, 168, 76, 0.24);
+  color: #0f172a;
 }

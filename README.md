@@ -64,3 +64,5 @@ npm run build
 - The frontend uses `proxy` in `package.json` to forward `/api` requests to the backend at `http://localhost:5000`.
 - The backend stores users in `backend/users.json` for development only.
 - Do not use the local storage auth implementation for production without a secure backend.
+
+ 
