@@ -74,6 +74,11 @@ function HomePage({ navigate }) {
               Contact Us
             </button>
           </div>
+          <div className="hero-trust-strip" aria-label="Booking highlights">
+            <span>Best rate guaranteed</span>
+            <span>Free cancellation</span>
+            <span>Breakfast included</span>
+          </div>
           <div className="hero-stats">
             <div className="stat">
               <span className="stat-number">500+</span>

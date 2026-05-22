@@ -112,7 +112,42 @@
   gap: 14px;
   justify-content: center;
   flex-wrap: wrap;
-  margin-bottom: 52px;
+  margin-bottom: 22px;
+}
+
+.hero-trust-strip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 42px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  color: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(245, 210, 122, 0.2);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+  backdrop-filter: blur(12px);
+}
+
+.hero-trust-strip span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hero-trust-strip span::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #f5d27a;
+  box-shadow: 0 0 0 4px rgba(245, 210, 122, 0.13);
 }
 
 /* ===== HERO STATS ===== */
@@ -167,8 +202,8 @@
   max-width: 1180px;
   margin: -44px auto 0;
   background: rgba(255, 255, 255, 0.95);
-  border-radius: 28px;
-  padding: 42px;
+  border-radius: 22px;
+  padding: 34px;
   box-shadow: 0 24px 70px rgba(15, 23, 42, 0.16);
   border: 1px solid rgba(255, 255, 255, 0.8);
   position: relative;
@@ -208,9 +243,9 @@
 
 .search-field input,
 .search-field select {
-  padding: 13px 16px;
+  padding: 14px 16px;
   border: 1px solid rgba(15, 23, 42, 0.1);
-  border-radius: 14px;
+  border-radius: 12px;
   font-size: 0.95rem;
   color: #0f172a;
   background: #f8fafc;
@@ -229,8 +264,8 @@
   background: linear-gradient(135deg, #c9a84c, #a8872e);
   color: #ffffff;
   border: none;
-  padding: 14px 24px;
-  border-radius: 999px;
+  padding: 15px 24px;
+  border-radius: 12px;
   font-size: 0.98rem;
   font-weight: 800;
   cursor: pointer;
