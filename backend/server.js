@@ -5,6 +5,8 @@ const jwt = require('jsonwebtoken');
 const fs = require('fs').promises;
 const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
+const nodemailer = require('nodemailer');
+require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -12,6 +14,19 @@ const SECRET_KEY = process.env.JWT_SECRET || 'hotelbookingsecret';
 const DB_FILE = path.join(__dirname, 'hotel.db');
 const USERS_FILE = path.join(__dirname, 'users.json');
 const db = new sqlite3.Database(DB_FILE);
+
+// Email configuration
+const GMAIL_EMAIL = process.env.GMAIL_EMAIL || 'your-email@gmail.com';
+const GMAIL_APP_PASSWORD = process.env.GMAIL_APP_PASSWORD || 'hqny ktfc cpub hasp';
+
+// Email transporter configuration with Google App Password
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: GMAIL_EMAIL,
+    pass: GMAIL_APP_PASSWORD,
+  },
+});
 
 app.use(cors());
 app.use(express.json());
@@ -119,6 +134,62 @@ const authMiddleware = async (req, res, next) => {
   }
 };
 
+// Function to send welcome email
+const sendWelcomeEmail = async (email, username) => {
+  try {
+    const mailOptions = {
+      from: GMAIL_EMAIL,
+      to: email,
+      subject: '🎉 Welcome to LuxeStay Hotel!',
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; text-align: center; border-radius: 10px 10px 0 0;">
+            <h1 style="margin: 0;">🏨 LuxeStay Hotel</h1>
+            <p style="margin: 10px 0 0 0;">Luxury Hotel Booking</p>
+          </div>
+          <div style="background: #f9f9f9; padding: 30px; border-radius: 0 0 10px 10px; border: 1px solid #eee; border-top: none;">
+            <h2 style="color: #333;">Your Account Successfully Registered!</h2>
+            <p style="color: #666; font-size: 16px; line-height: 1.6;">
+              Dear <strong>${username}</strong>,
+            </p>
+            <p style="color: #666; font-size: 16px; line-height: 1.6;">
+              Thank you for registering with LuxeStay Hotel! Your account has been successfully created and is ready to use.
+            </p>
+            <p style="color: #666; font-size: 16px; line-height: 1.6;">
+              You can now:
+            </p>
+            <ul style="color: #666; font-size: 16px; line-height: 1.8;">
+              <li>Browse our luxury hotels and rooms</li>
+              <li>Make bookings with ease</li>
+              <li>Manage your profile</li>
+              <li>View booking history</li>
+            </ul>
+            <p style="color: #666; font-size: 16px; line-height: 1.6;">
+              If you have any questions or need assistance, feel free to contact our support team.
+            </p>
+            <div style="margin-top: 30px; text-align: center;">
+              <a href="http://localhost:3000" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 12px 30px; text-decoration: none; border-radius: 5px; display: inline-block; font-weight: bold;">
+                Start Booking Now
+              </a>
+            </div>
+            <p style="color: #999; font-size: 12px; margin-top: 30px; border-top: 1px solid #ddd; padding-top: 20px;">
+              © 2026 LuxeStay Hotel. All rights reserved.<br>
+              This is an automated email. Please do not reply to this email.
+            </p>
+          </div>
+        </div>
+      `,
+    };
+
+    await transporter.sendMail(mailOptions);
+    console.log(`Welcome email sent to ${email}`);
+    return true;
+  } catch (error) {
+    console.error('Error sending welcome email:', error);
+    return false;
+  }
+};
+
 app.post('/api/auth/register', async (req, res) => {
   const { username, email, password } = req.body;
   if (!username || !email || !password) {
@@ -144,6 +215,9 @@ app.post('/api/auth/register', async (req, res) => {
     'INSERT INTO users (id, username, email, password_hash, created_at) VALUES (?, ?, ?, ?, ?)',
     [newUser.id, newUser.username, newUser.email, newUser.passwordHash, newUser.createdAt]
   );
+
+  // Send welcome email
+  await sendWelcomeEmail(newUser.email, newUser.username);
 
   const token = generateToken(newUser);
   return res.status(201).json({
