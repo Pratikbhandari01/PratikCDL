@@ -83,6 +83,15 @@
   z-index: 2;
 }
 
+.room-hotel {
+  font-size: 0.85rem;
+  color: #d4a574;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
 .room-header {
   display: flex;
   justify-content: space-between;

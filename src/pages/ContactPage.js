@@ -35,11 +35,16 @@ function ContactPage({ navigate }) {
     }
   };
 
+  const resetForm = () => {
+    setSubmitted(false);
+    setFormData({ name: '', email: '', subject: '', message: '' });
+  };
+
   const contactInfo = [
-    { icon: '📍', title: 'Address', value: '123 Luxury Avenue, Miami Beach, FL 33139' },
-    { icon: '📞', title: 'Phone', value: '+1 (800) 555-LUXE' },
-    { icon: '✉️', title: 'Email', value: 'info@luxestay.com' },
-    { icon: '🕐', title: 'Front Desk', value: '24 hours / 7 days a week' },
+    { label: 'VISIT', title: 'Address', value: '123 Luxury Avenue, Miami Beach, FL 33139' },
+    { label: 'CALL', title: 'Phone', value: '+1 (800) 555-LUXE' },
+    { label: 'MAIL', title: 'Email', value: 'info@luxestay.com' },
+    { label: 'OPEN', title: 'Front Desk', value: '24 hours / 7 days a week' },
   ];
 
   const faqs = [
@@ -63,7 +68,6 @@ function ContactPage({ navigate }) {
 
   return (
     <div className="contact-page">
-      {/* ===== PAGE HEADER ===== */}
       <div className="contact-header">
         <div className="contact-header-content">
           <p className="breadcrumb">
@@ -71,18 +75,17 @@ function ContactPage({ navigate }) {
             <span> / </span>
             <span>Contact</span>
           </p>
-          <h1>Get In Touch</h1>
-          <p>We're here to help make your stay perfect</p>
+          <h1>Contact LuxeStay</h1>
+          <p>Need help with a booking, special request, or stay detail? Our team is ready.</p>
         </div>
       </div>
 
-      {/* ===== CONTACT INFO CARDS ===== */}
       <section className="contact-info-section">
         <div className="contact-container">
           <div className="contact-info-grid">
             {contactInfo.map((item, i) => (
               <div key={i} className="contact-info-card">
-                <div className="contact-icon">{item.icon}</div>
+                <div className="contact-icon">{item.label}</div>
                 <h3>{item.title}</h3>
                 <p>{item.value}</p>
               </div>
@@ -91,25 +94,20 @@ function ContactPage({ navigate }) {
         </div>
       </section>
 
-      {/* ===== CONTACT FORM + MAP ===== */}
       <section className="contact-main-section">
         <div className="contact-container">
           <div className="contact-grid">
-
-            {/* FORM */}
             <div className="contact-form-card">
+              <span className="form-kicker">Guest Services</span>
               <h2>Send Us a Message</h2>
-              <p className="form-subtitle">Fill out the form below and we'll get back to you within 24 hours.</p>
+              <p className="form-subtitle">Share a few details and we will get back to you within 24 hours.</p>
 
               {submitted ? (
                 <div className="success-message">
-                  <div className="success-icon-msg">✅</div>
-                  <h3>Message Sent!</h3>
-                  <p>Thank you for reaching out, <strong>{formData.name}</strong>! We'll respond to <strong>{formData.email}</strong> within 24 hours.</p>
-                  <button
-                    className="btn-primary"
-                    onClick={() => { setSubmitted(false); setFormData({ name: '', email: '', subject: '', message: '' }); }}
-                  >
+                  <div className="success-icon-msg">SENT</div>
+                  <h3>Message Sent</h3>
+                  <p>Thank you for reaching out, <strong>{formData.name}</strong>. We will respond to <strong>{formData.email}</strong> within 24 hours.</p>
+                  <button className="btn-primary" onClick={resetForm}>
                     Send Another Message
                   </button>
                 </div>
@@ -174,29 +172,28 @@ function ContactPage({ navigate }) {
                   </div>
 
                   <button type="submit" className="btn-send">
-                    📨 Send Message
+                    Send Message
                   </button>
                 </form>
               )}
             </div>
 
-            {/* MAP PLACEHOLDER */}
             <div className="map-section">
               <div className="map-placeholder">
                 <div className="map-content">
-                  <span className="map-pin">📍</span>
+                  <span className="map-pin">MIAMI BEACH</span>
                   <h3>LuxeStay Hotel</h3>
                   <p>123 Luxury Avenue<br />Miami Beach, FL 33139</p>
-                  <div className="map-grid">
-                    {Array.from({ length: 16 }).map((_, i) => (
-                      <div key={i} className="map-block"></div>
-                    ))}
-                  </div>
+                </div>
+                <div className="map-grid">
+                  {Array.from({ length: 16 }).map((_, i) => (
+                    <div key={i} className="map-block"></div>
+                  ))}
                 </div>
               </div>
 
               <div className="hotel-hours">
-                <h3>🕐 Hotel Hours</h3>
+                <h3>Hotel Hours</h3>
                 <div className="hours-list">
                   <div className="hours-item">
                     <span>Front Desk</span>
@@ -204,11 +201,11 @@ function ContactPage({ navigate }) {
                   </div>
                   <div className="hours-item">
                     <span>Restaurant</span>
-                    <strong>6 AM – 11 PM</strong>
+                    <strong>6 AM - 11 PM</strong>
                   </div>
                   <div className="hours-item">
                     <span>Pool & Spa</span>
-                    <strong>7 AM – 10 PM</strong>
+                    <strong>7 AM - 10 PM</strong>
                   </div>
                   <div className="hours-item">
                     <span>Fitness Center</span>
@@ -225,7 +222,6 @@ function ContactPage({ navigate }) {
         </div>
       </section>
 
-      {/* ===== FAQ SECTION ===== */}
       <section className="faq-section">
         <div className="contact-container">
           <div className="section-title">
@@ -236,7 +232,8 @@ function ContactPage({ navigate }) {
           <div className="faq-grid">
             {faqs.map((faq, i) => (
               <div key={i} className="faq-card">
-                <h3>❓ {faq.q}</h3>
+                <span className="faq-number">{String(i + 1).padStart(2, '0')}</span>
+                <h3>{faq.q}</h3>
                 <p>{faq.a}</p>
               </div>
             ))}

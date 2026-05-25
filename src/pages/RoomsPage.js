@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import rooms from '../data/rooms';
+import hotels from '../data/hotels';
 import RoomCard from '../components/RoomCard';
 import './RoomsPage.css';
 
-function RoomsPage({ navigate }) {
+function RoomsPage({ navigate, selectedHotelId }) {
   const [filter, setFilter] = useState('all');
   const [sortBy, setSortBy] = useState('default');
   const [priceRange, setPriceRange] = useState(700);
+
+  const currentHotel = selectedHotelId ? hotels.find(h => h.id === selectedHotelId) : null;
 
   const filters = [
     { id: 'all', label: 'All Rooms' },
@@ -17,6 +20,10 @@ function RoomsPage({ navigate }) {
 
   const getFilteredRooms = () => {
     let filtered = rooms.filter(room => room.price <= priceRange);
+
+    if (selectedHotelId) {
+      filtered = filtered.filter(room => room.hotelId === selectedHotelId);
+    }
 
     if (filter === 'budget') filtered = filtered.filter(r => r.price < 150);
     else if (filter === 'mid') filtered = filtered.filter(r => r.price >= 150 && r.price <= 300);
@@ -40,10 +47,16 @@ function RoomsPage({ navigate }) {
           <p className="breadcrumb">
             <button onClick={() => navigate('home')}>Home</button>
             <span> / </span>
+            {selectedHotelId && (
+              <>
+                <button onClick={() => navigate('hotels')}>Hotels</button>
+                <span> / </span>
+              </>
+            )}
             <span>Rooms</span>
           </p>
-          <h1>Our Rooms & Suites</h1>
-          <p>Choose from our carefully curated selection of luxury accommodations</p>
+          <h1>{currentHotel ? `${currentHotel.name} - Rooms & Suites` : 'Our Rooms & Suites'}</h1>
+          <p>{currentHotel ? `All available rooms at ${currentHotel.name} in ${currentHotel.location}` : 'Choose from our carefully curated selection of luxury accommodations'}</p>
         </div>
       </div>
 

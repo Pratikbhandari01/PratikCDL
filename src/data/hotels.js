@@ -1,0 +1,40 @@
+const hotels = [
+  {
+    id: 1,
+    name: 'Grand Luxury Resort',
+    location: 'Miami, Florida',
+    rating: 5,
+    reviews: 542,
+    image: '🏨',
+    description: 'Experience ultimate luxury at our beachfront resort with world-class amenities and stunning ocean views.',
+    amenities: ['🏊 Swimming Pool', '🍽️ Fine Dining', '🧖 Spa & Wellness', '🎾 Sports Facilities', '🏋️ Fitness Center'],
+    image_url: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+    roomCount: 3,
+  },
+  {
+    id: 2,
+    name: 'Urban Business Hotel',
+    location: 'New York, New York',
+    rating: 5,
+    reviews: 428,
+    image: '🏢',
+    description: 'Modern business hotel in the heart of Manhattan, perfect for corporate travelers with premium facilities.',
+    amenities: ['📶 Business Center', '🍴 24/7 Restaurant', '🧘 Yoga Studio', '📚 Library', '🚀 Tech Hub'],
+    image_url: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+    roomCount: 2,
+  },
+  {
+    id: 3,
+    name: 'Family Paradise Hotel',
+    location: 'Orlando, Florida',
+    rating: 5,
+    reviews: 367,
+    image: '👨‍👩‍👧‍👦',
+    description: 'Your perfect family destination with kid-friendly amenities, entertainment, and spacious accommodations.',
+    amenities: ['🎪 Kids Club', '🎮 Game Room', '🎬 Movie Theater', '🍿 Snack Bar', '🏊 Water Park'],
+    image_url: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+    roomCount: 1,
+  },
+];
+
+export default hotels;

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from './components/Navbar';
 import HomePage from './pages/HomePage';
+import HotelsPage from './pages/HotelsPage';
 import RoomsPage from './pages/RoomsPage';
 import BookingPage from './pages/BookingPage';
 import ConfirmationPage from './pages/ConfirmationPage';
@@ -16,6 +17,7 @@ function App() {
   const [bookingData, setBookingData] = useState(null);
   const [authUser, setAuthUser] = useState(null);
   const [redirectAfterAuth, setRedirectAfterAuth] = useState(null);
+  const [selectedHotelId, setSelectedHotelId] = useState(null);
 
   useEffect(() => {
     const storedUser = localStorage.getItem('hotel_user');
@@ -44,6 +46,9 @@ function App() {
     if (data) {
       if (page === 'booking') setSelectedRoom(data);
       if (page === 'confirmation') setBookingData(data);
+      if (page === 'rooms' && data.hotelId) setSelectedHotelId(data.hotelId);
+    } else {
+      if (page === 'rooms') setSelectedHotelId(null);
     }
     window.scrollTo(0, 0);
   };
@@ -104,8 +109,10 @@ function App() {
     switch (currentPage) {
       case 'home':
         return <HomePage navigate={navigate} />;
+      case 'hotels':
+        return <HotelsPage navigate={navigate} />;
       case 'rooms':
-        return <RoomsPage navigate={navigate} />;
+        return <RoomsPage navigate={navigate} selectedHotelId={selectedHotelId} />;
       case 'booking':
         return <BookingPage room={selectedRoom} navigate={navigate} authUser={authUser} />;
       case 'confirmation':
@@ -156,6 +163,7 @@ function App() {
             <h4>Quick Links</h4>
             <ul>
               <li><button onClick={() => navigate('home')}>Home</button></li>
+              <li><button onClick={() => navigate('hotels')}>Hotels</button></li>
               <li><button onClick={() => navigate('rooms')}>Rooms</button></li>
               <li><button onClick={() => navigate('contact')}>Contact</button></li>
             </ul>

@@ -1,7 +1,9 @@
 import React from 'react';
+import hotels from '../data/hotels';
 import './RoomCard.css';
 
 function RoomCard({ room, navigate }) {
+  const hotel = hotels.find(h => h.id === room.hotelId);
   return (
     <div className="room-card">
       <div className="room-image">
@@ -14,6 +16,7 @@ function RoomCard({ room, navigate }) {
         <div className="room-badge">{room.badge}</div>
       </div>
       <div className="room-info">
+        {hotel && <p className="room-hotel">🏨 {hotel.name}</p>}
         <div className="room-header">
           <h3>{room.name}</h3>
           <div className="room-price">

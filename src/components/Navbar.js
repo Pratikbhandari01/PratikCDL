@@ -15,6 +15,7 @@ function Navbar({ currentPage, navigate, authUser, onLogout }) {
 
   const navLinks = [
     { id: 'home', label: 'Home' },
+    { id: 'hotels', label: 'Hotels' },
     { id: 'rooms', label: 'Rooms' },
     { id: 'contact', label: 'Contact' },
   ];

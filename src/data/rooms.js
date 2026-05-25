@@ -1,6 +1,7 @@
 const rooms = [
   {
     id: 1,
+    hotelId: 1,
     name: 'Standard Room',
     price: 89,
     badge: 'Best Value',
@@ -16,6 +17,7 @@ const rooms = [
   },
   {
     id: 2,
+    hotelId: 2,
     name: 'Deluxe Room',
     price: 149,
     badge: 'Popular',
@@ -31,6 +33,7 @@ const rooms = [
   },
   {
     id: 3,
+    hotelId: 3,
     name: 'Family Suite',
     price: 219,
     badge: 'Family Pick',
@@ -46,6 +49,7 @@ const rooms = [
   },
   {
     id: 4,
+    hotelId: 1,
     name: 'Junior Suite',
     price: 189,
     badge: 'Romantic',
@@ -61,6 +65,7 @@ const rooms = [
   },
   {
     id: 5,
+    hotelId: 2,
     name: 'Executive Suite',
     price: 299,
     badge: 'Business',
@@ -76,6 +81,7 @@ const rooms = [
   },
   {
     id: 6,
+    hotelId: 1,
     name: 'Presidential Suite',
     price: 599,
     badge: '⭐ Luxury',
