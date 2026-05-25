@@ -19,92 +19,89 @@ function HomePage({ navigate }) {
   const featuredRooms = rooms.slice(0, 3);
 
   const amenities = [
-    { icon: '🏊', title: 'Infinity Pool', desc: 'Rooftop pool with panoramic city views' },
-    { icon: '🧖', title: 'Luxury Spa', desc: 'Full-service spa and wellness center' },
-    { icon: '🍽️', title: 'Fine Dining', desc: '3 world-class restaurants on-site' },
-    { icon: '🏋️', title: 'Fitness Center', desc: '24/7 state-of-the-art gym' },
-    { icon: '🚗', title: 'Valet Parking', desc: 'Complimentary valet service' },
-    { icon: '✈️', title: 'Airport Transfer', desc: 'Private airport shuttle service' },
+    { icon: 'POOL', title: 'Infinity Pool', desc: 'Rooftop pool with panoramic city views' },
+    { icon: 'SPA', title: 'Luxury Spa', desc: 'Full-service spa and wellness center' },
+    { icon: 'DINE', title: 'Fine Dining', desc: 'Three world-class restaurants on-site' },
+    { icon: 'GYM', title: 'Fitness Center', desc: '24/7 state-of-the-art gym' },
+    { icon: 'VALET', title: 'Valet Parking', desc: 'Complimentary valet service' },
+    { icon: 'AIR', title: 'Airport Transfer', desc: 'Private airport shuttle service' },
   ];
 
   const testimonials = [
     {
       name: 'Sarah Johnson',
       role: 'Business Traveler',
-      text: 'Absolutely stunning hotel! The Presidential Suite exceeded all my expectations. The staff was incredibly attentive and the views were breathtaking.',
+      text: 'Absolutely stunning hotel. The Presidential Suite exceeded all my expectations, and the staff made every detail feel effortless.',
       rating: 5,
-      avatar: '👩‍💼',
+      avatar: 'SJ',
     },
     {
       name: 'Michael Chen',
       role: 'Honeymoon Guest',
-      text: 'We spent our honeymoon here and it was magical. The Junior Suite with the jacuzzi and balcony was perfect for a romantic getaway.',
+      text: 'We spent our honeymoon here and it was magical. The Junior Suite balcony was perfect for a romantic getaway.',
       rating: 5,
-      avatar: '👨',
+      avatar: 'MC',
     },
     {
       name: 'The Williams Family',
       role: 'Family Vacation',
-      text: 'The Family Suite was perfect for our kids. So much space and the game console was a huge hit! We will definitely be coming back.',
+      text: 'The Family Suite was perfect for our kids. There was plenty of space, and we will definitely be coming back.',
       rating: 5,
-      avatar: '👨‍👩‍👧',
+      avatar: 'WF',
     },
   ];
 
   return (
     <div className="home-page">
-      {/* ===== HERO SECTION ===== */}
       <section className="hero">
         <div className="hero-overlay"></div>
         <div className="hero-content">
-          <p className="hero-subtitle">Welcome to LuxeStay Hotel</p>
-          <h1 className="hero-title">
-            Experience <span className="gold-text">Luxury</span><br />
-            Like Never Before
-          </h1>
-          <p className="hero-description">
-            Discover the perfect blend of elegance, comfort, and world-class service.
-            Your dream vacation starts here.
-          </p>
-          <div className="hero-buttons">
-            <button className="btn-primary" onClick={() => navigate('rooms')}>
-              Explore Rooms
-            </button>
-            <button className="btn-white" onClick={() => navigate('contact')}>
-              Contact Us
-            </button>
-          </div>
-          <div className="hero-trust-strip" aria-label="Booking highlights">
-            <span>Best rate guaranteed</span>
-            <span>Free cancellation</span>
-            <span>Breakfast included</span>
-          </div>
-          <div className="hero-stats">
-            <div className="stat">
-              <span className="stat-number">500+</span>
-              <span className="stat-label">Luxury Rooms</span>
+          <div className="hero-copy">
+            <p className="hero-subtitle">Welcome to LuxeStay Hotel</p>
+            <h1 className="hero-title">
+              Stay where <span className="gold-text">comfort</span> feels cinematic
+            </h1>
+            <p className="hero-description">
+              Book refined rooms, generous suites, and polished hotel service in one
+              calm place designed for memorable city escapes.
+            </p>
+            <div className="hero-buttons">
+              <button className="btn-primary" onClick={() => navigate('rooms')}>
+                Explore Rooms
+              </button>
+              <button className="btn-white" onClick={() => navigate('contact')}>
+                Contact Us
+              </button>
             </div>
-            <div className="stat-divider"></div>
-            <div className="stat">
-              <span className="stat-number">50K+</span>
-              <span className="stat-label">Happy Guests</span>
+            <div className="hero-trust-strip" aria-label="Booking highlights">
+              <span>Best rate guaranteed</span>
+              <span>Free cancellation</span>
+              <span>Breakfast included</span>
             </div>
-            <div className="stat-divider"></div>
-            <div className="stat">
-              <span className="stat-number">15+</span>
-              <span className="stat-label">Years of Excellence</span>
+            <div className="hero-stats">
+              <div className="stat">
+                <span className="stat-number">500+</span>
+                <span className="stat-label">Luxury Rooms</span>
+              </div>
+              <div className="stat">
+                <span className="stat-number">50K+</span>
+                <span className="stat-label">Happy Guests</span>
+              </div>
+              <div className="stat">
+                <span className="stat-number">15+</span>
+                <span className="stat-label">Years of Excellence</span>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ===== SEARCH BAR ===== */}
       <section className="search-section">
         <div className="search-container">
           <h2>Find Your Perfect Room</h2>
           <form className="search-form" onSubmit={handleSearch}>
             <div className="search-field">
-              <label>📅 Check-In</label>
+              <label>Check-In</label>
               <input
                 type="date"
                 value={searchData.checkIn}
@@ -113,7 +110,7 @@ function HomePage({ navigate }) {
               />
             </div>
             <div className="search-field">
-              <label>📅 Check-Out</label>
+              <label>Check-Out</label>
               <input
                 type="date"
                 value={searchData.checkOut}
@@ -122,7 +119,7 @@ function HomePage({ navigate }) {
               />
             </div>
             <div className="search-field">
-              <label>👥 Guests</label>
+              <label>Guests</label>
               <select
                 value={searchData.guests}
                 onChange={e => setSearchData({ ...searchData, guests: e.target.value })}
@@ -133,7 +130,7 @@ function HomePage({ navigate }) {
               </select>
             </div>
             <div className="search-field">
-              <label>🏨 Room Type</label>
+              <label>Room Type</label>
               <select
                 value={searchData.roomType}
                 onChange={e => setSearchData({ ...searchData, roomType: e.target.value })}
@@ -145,13 +142,12 @@ function HomePage({ navigate }) {
               </select>
             </div>
             <button type="submit" className="btn-search">
-              🔍 Search
+              Search
             </button>
           </form>
         </div>
       </section>
 
-      {/* ===== FEATURED ROOMS ===== */}
       <section className="featured-rooms">
         <div className="container">
           <div className="section-title">
@@ -172,7 +168,6 @@ function HomePage({ navigate }) {
         </div>
       </section>
 
-      {/* ===== AMENITIES ===== */}
       <section className="amenities-section">
         <div className="container">
           <div className="section-title">
@@ -192,7 +187,6 @@ function HomePage({ navigate }) {
         </div>
       </section>
 
-      {/* ===== TESTIMONIALS ===== */}
       <section className="testimonials-section">
         <div className="container">
           <div className="section-title">
@@ -203,10 +197,12 @@ function HomePage({ navigate }) {
           <div className="testimonials-grid">
             {testimonials.map((t, i) => (
               <div key={i} className="testimonial-card">
-                <div className="testimonial-stars">
-                  {'⭐'.repeat(t.rating)}
+                <div>
+                  <div className="testimonial-stars">
+                    {'*****'.slice(0, t.rating)}
+                  </div>
+                  <p className="testimonial-text">"{t.text}"</p>
                 </div>
-                <p className="testimonial-text">"{t.text}"</p>
                 <div className="testimonial-author">
                   <span className="author-avatar">{t.avatar}</span>
                   <div>
@@ -220,7 +216,6 @@ function HomePage({ navigate }) {
         </div>
       </section>
 
-      {/* ===== CTA SECTION ===== */}
       <section className="cta-section">
         <div className="cta-content">
           <h2>Ready for an Unforgettable Stay?</h2>
